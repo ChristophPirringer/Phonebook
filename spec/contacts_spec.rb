@@ -1,5 +1,7 @@
 require("rspec")
 require("contacts")
+require("email")
+require("pry")
 
 describe(Contact) do
 
@@ -9,7 +11,7 @@ describe(Contact) do
       @test_contact.save()
     end
 
-  describe("#first_name") do
+  describe("#nickname") do
     it("checks if the contact is intialized via the nickname") do
       expect(@test_contact.nickname()).to(eq("Tyler"))
     end
@@ -51,5 +53,44 @@ describe(Contact) do
     end
   end
 
+end
+
+describe(Email) do
+
+  before() do
+    Email.clear()
+    @test_email = Email.new({:email_address => "none@no.one"})
+    @test_email.save()
+  end
+
+  describe("#email") do
+    it("returns the string of the entered email_adress") do
+      expect(@test_email.email_address()).to(eq("none@no.one"))
+    end
+  end
+
+  describe(".clear") do
+    it("clears email entries") do
+      Email.clear
+      expect(Email.all()).to(eq([]))
+    end
+  end
+
+  describe("#save") do
+    it("saves the email adress") do
+      expect(Email.all()).to(eq([@test_email]))
+    end
+  end
+  describe(".find") do
+    it("finds a spesific email in an array and returns contacts email") do
+      expect(Email.find(@test_email.id())).to(eq(@test_email))
+    end
+  end
+
+  describe("#id") do
+    it("gives each nickname an id by entry into array") do
+      expect(@test_email.id()).to(eq(1))
+    end
+  end
 
 end
