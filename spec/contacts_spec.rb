@@ -1,6 +1,7 @@
 require("rspec")
 require("contacts")
 require("email")
+require("phone")
 require("pry")
 
 describe(Contact) do
@@ -83,14 +84,54 @@ describe(Email) do
     end
   end
   describe(".find") do
-    it("finds a spesific email in an array and returns contacts email") do
+    it("finds a specific email in an array and returns contacts email") do
       expect(Email.find(@test_email.id())).to(eq(@test_email))
     end
   end
 
   describe("#id") do
-    it("gives each nickname an id by entry into array") do
+    it("gives each email_address an id by entry into array") do
       expect(@test_email.id()).to(eq(1))
+    end
+  end
+
+end
+
+describe(Phone) do
+
+  before() do
+    Phone.clear()
+    @test_phone = Phone.new({:phone_number => 5555555})
+    @test_phone.save()
+  end
+
+  describe("#phone_number") do
+    it("returns the number of the entered phone_number") do
+      expect(@test_phone.phone_number()).to(eq(5555555))
+    end
+  end
+
+  describe(".clear") do
+    it("clears phone numbers") do
+      Phone.clear
+      expect(Phone.all()).to(eq([]))
+    end
+  end
+
+  describe("#save") do
+    it("saves the phone numbers") do
+      expect(Phone.all()).to(eq([@test_phone]))
+    end
+  end
+  describe(".find") do
+    it("finds a specific phone number in an array and returns contacts number") do
+      expect(Phone.find(@test_phone.id())).to(eq(@test_phone))
+    end
+  end
+
+  describe("#id") do
+    it("gives each phone_number an id by entry into array") do
+      expect(@test_phone.id()).to(eq(1))
     end
   end
 

@@ -1,10 +1,14 @@
-<h2>Here are ways to reach the contact: </h2>
+<h2>Here are ways to reach the contact <%= @contact.nickname() %>: </h2>
 
-<ul> <% @contact.emails().each() do |contact| %>
-  <li><a href="/contacts/<%=contact.id() %>"> <%= contact.email_address() %></a></li>
-  <% end %>
-</ul>
-
+<div id="emails">
+  <li>
+    Email:
+    <ul> <% @contact.emails().each() do |contact| %>
+      <li><a href="/contacts/<%=contact.id() %>"> <%= contact.email_address() %></a></li>
+      <% end %>
+    </ul>
+  </li>
+</div>
 
 
 <a href="/contacts/<%= @contact.id() %>/email/new">Add a new email address:</a>
