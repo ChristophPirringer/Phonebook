@@ -1,5 +1,5 @@
 class Contact
-  attr_reader(:nickname, :emails)
+  attr_reader(:nickname, :emails, :phones)
   @@contacts = []
 
 
@@ -7,6 +7,7 @@ class Contact
     @nickname = attributes.fetch(:nickname)
     @contact_id = @@contacts.length().+(1)
     @emails = []
+    @phones = []
   end
 
   define_singleton_method(:all) do
@@ -19,6 +20,10 @@ class Contact
 
   define_method(:save) do
     @@contacts.push(self)
+  end
+
+  define_method(:delete) do
+    @@contacts.delete(self)
   end
 
   define_singleton_method(:clear) do
@@ -41,6 +46,10 @@ class Contact
 
   define_method(:add_email) do |email|
     @emails.push(email)
+  end
+
+  define_method(:add_phone) do |phone|
+    @phones.push(phone)
   end
 
 end

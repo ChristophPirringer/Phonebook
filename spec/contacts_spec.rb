@@ -55,6 +55,13 @@ describe(Contact) do
     end
   end
 
+  describe("#delete")do
+    it("removes one specific entrz from the @@contacts array") do
+      Contact.all().delete(@test_contact)
+      expect(Contact.all()).to(eq([]))
+    end
+  end
+
 end
 
 describe(Email) do

@@ -2,16 +2,27 @@
 
 <div id="emails">
   <li>
-    Email:
-    <ul> <% @contact.emails().each() do |contact| %>
-      <li><a href="/contacts/<%=contact.id() %>"> <%= contact.email_address() %></a></li>
+    Email-Addresses:
+    <ul> <% @contact.emails().each() do |email_entry| %>
+      <li><a href="/contacts/<%=email_entry.id() %>"> <%= email_entry.email_address() %></a></li>
       <% end %>
     </ul>
   </li>
 </div>
 
+<div id="phone">
+  <li>
+    Phone-Numbers:
+    <ul> <% @contact.phones().each() do |phone_entry| %>
+      <li><a href="/contacts/<%=phone_entry.id() %>"> <%= phone_entry.phone_number() %></a></li>
+      <% end %>
+    </ul>
+  </li>
+</div>
 
 <a href="/contacts/<%= @contact.id() %>/email/new">Add a new email address:</a>
+<a href="/contacts/<%= @contact.id() %>/phone/new">Add a new phone number:</a>
+
 
 
 

@@ -3,6 +3,7 @@ require('sinatra/reloader')
 also_reload('./lib/**/*.rb')
 require('./lib/contacts')
 require("./lib/email")
+require("./lib/phone")
 require("pry")
 
 
@@ -28,8 +29,6 @@ end
 
 get("/contacts/:id") do
   @contact = Contact.find(params.fetch("id").to_i())
-  # binding.pry
-  # @email = Email.find(params.fetch("email_id").to_i())
   erb(:contact)
 end
 
@@ -49,6 +48,35 @@ post('/contacts') do
   email = Email.new({:email_address => email_address})
   @contact = Contact.find(params.fetch("contact_id").to_i())
   @contact.add_email(email)
-  # binding.pry
   erb(:contact)
+end
+
+
+############
+#Phone Class
+############
+
+get("/contacts/:id/phone/new")do
+  @contact = Contact.find(params.fetch('id').to_i())
+  @phone = Phone.find(params.fetch("id").to_i())
+  erb(:phone_form)
+end
+
+post('/contacts/phone/') do
+  phone_number = params.fetch("phone_number")
+  phone = Phone.new({:phone_number => phone_number})
+  @contact = Contact.find(params.fetch("contact_id").to_i())
+  @contact.add_phone(phone)
+  erb(:contact)
+end
+
+
+############
+#Clear Function
+############
+
+
+get("/clear") do
+  Contact.clear()
+  erb(:index)
 end
