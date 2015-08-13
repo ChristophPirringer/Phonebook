@@ -8,7 +8,7 @@ describe(Contact) do
 
     before() do
       Contact.clear()
-      @test_contact = Contact.new({:nickname => "Tyler"})
+      @test_contact = Contact.new({:nickname => "Tyler", :job => "Computer-Genius", :city => "Portland"})
       @test_contact.save()
     end
 
@@ -57,7 +57,7 @@ describe(Contact) do
 
   describe("#delete")do
     it("removes one specific entrz from the @@contacts array") do
-      Contact.all().delete(@test_contact)
+      @test_contact.delete()
       expect(Contact.all()).to(eq([]))
     end
   end

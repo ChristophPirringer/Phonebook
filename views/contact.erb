@@ -1,4 +1,4 @@
-<h2>Here are ways to reach the contact <%= @contact.nickname() %>: </h2>
+<h2>Here are ways to reach the contact <%= @contact.nickname() %> the <%= @contact.job()%> from <%= @contact.city()%>: </h2>
 
 <div id="emails">
   <li>
@@ -27,5 +27,5 @@
 
 
 
-<a href="/contacts/new">Add a new contact</a>
+<a href="/contacts/<%= @contact.id()%>/delete">Delete this contact!</a>
 <a href="/">Return to Main Page</a>

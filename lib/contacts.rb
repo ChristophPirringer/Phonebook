@@ -1,13 +1,16 @@
 class Contact
-  attr_reader(:nickname, :emails, :phones)
+  attr_reader(:nickname, :job, :city, :emails, :phones)
   @@contacts = []
 
 
   define_method(:initialize) do |attributes|
     @nickname = attributes.fetch(:nickname)
+    @job = attributes.fetch(:job)
+    @city = attributes.fetch(:city)
     @contact_id = @@contacts.length().+(1)
     @emails = []
     @phones = []
+    @jobs = []
   end
 
   define_singleton_method(:all) do

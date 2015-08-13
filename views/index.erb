@@ -2,7 +2,7 @@
 
 <ul>
   <% @contacts.each() do |contact| %>
-  <li><a href="/contacts/<%= contact.id() %>"><%= contact.nickname() %> </a></li>
+  <li><a href="/contacts/<%= contact.id() %>"><%= contact.nickname() %> the <%= contact.job() %> from <%= contact.city() %></a></li>
   <% end %>
 </ul>
 

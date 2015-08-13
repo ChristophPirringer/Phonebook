@@ -22,7 +22,9 @@ end
 
 post("/") do
   nickname = params.fetch("nickname")
-  Contact.new({:nickname => nickname}).save()
+  job = params.fetch("job")
+  city = params.fetch("city")
+  Contact.new({:nickname => nickname, :job => job, :city => city}).save()
   @contacts = Contact.all()
   erb(:index)
 end
@@ -71,12 +73,24 @@ post('/contacts/phone/') do
 end
 
 
-############
+################
 #Clear Function
-############
+################
 
 
 get("/clear") do
   Contact.clear()
+  @contacts = Contact.all()
+  erb(:index)
+end
+
+################
+#Delete Function
+################
+
+get("/contacts/:id/delete") do
+  contact=Contact.find(params.fetch("id").to_i())
+  contact.delete()
+  @contacts = Contact.all()
   erb(:index)
 end
