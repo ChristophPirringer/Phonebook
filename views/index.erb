@@ -1,0 +1,9 @@
+<h1>A somewhat-awesome, semi-great list of contacts</h1>
+
+<ul>
+  <% @contacts.each() do |contact| %>
+  <li><a href="/contacts/<%= contact.id() %>"><%= contact.nickname() %> </a></li>
+  <% end %>
+</ul>
+
+<a href="/contacts/new">You realy have more than one friend? Add them here!!</a>
