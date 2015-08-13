@@ -1,9 +1,16 @@
 <h2>Here are ways to reach the contact: </h2>
 
-<ul> <% @contacts.info().each() do |contact| %>
-  <li><a href="/contacts/<%=contact.id() %>"> <%= contact.nickname() %> </a></li>
+<ul> <% @contact.emails().each() do |contact| %>
+  <li><a href="/contacts/<%=contact.id() %>"> <%= contact.email_address() %></a></li>
   <% end %>
 </ul>
+
+
+
+<a href="/contacts/<%= @contact.id() %>/email/new">Add a new email address:</a>
+
+
+
 
 <a href="/contacts/new">Add a new contact</a>
 <a href="/">Return to Main Page</a>

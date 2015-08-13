@@ -1,0 +1,11 @@
+<h1>Add an email address:</h1>
+
+<form action="/contacts" method="post">
+  <label for="email_address">The new email address:</label>
+  <input id='email_address' name='email_address' type='text'>
+
+  <input id='contact_id' name='contact_id' type='hidden' value='<%= @contact.contact_id() %>'>
+
+
+  <button type="submit">Add email address</button>
+</form>

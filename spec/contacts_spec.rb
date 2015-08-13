@@ -46,10 +46,11 @@ describe(Contact) do
     end
   end
 
-  describe("#add") do
-    it("ads a new contact and checks its existance in the array") do
-      @test_contact.add()
-      expect(@test_contact.info()).to(eq([@test_contact.nickname]))
+  describe("#add_email") do
+    it("ads an email-address from the Email-class to the email-array") do
+      email = Email.new(:email_address => "hello@he.lo")
+      @test_contact.add_email(email)
+      expect(@test_contact.emails()).to(eq([email]))
     end
   end
 

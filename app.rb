@@ -2,7 +2,13 @@ require('sinatra')
 require('sinatra/reloader')
 also_reload('./lib/**/*.rb')
 require('./lib/contacts')
+require("./lib/email")
 require("pry")
+
+
+############
+#Contact Class
+############
 
 get('/') do
   @contacts = Contact.all()
@@ -21,6 +27,28 @@ post("/") do
 end
 
 get("/contacts/:id") do
-  @contacts = Contact.find(params.fetch("id").to_i())
+  @contact = Contact.find(params.fetch("id").to_i())
+  # binding.pry
+  # @email = Email.find(params.fetch("email_id").to_i())
+  erb(:contact)
+end
+
+
+############
+#Email Class
+############
+
+get("/contacts/:id/email/new")do
+  @contact = Contact.find(params.fetch('id').to_i())
+  @email = Email.find(params.fetch("id").to_i())
+  erb(:email_form)
+end
+
+post('/contacts') do
+  email_address = params.fetch("email_address")
+  email = Email.new({:email_address => email_address})
+  @contact = Contact.find(params.fetch("contact_id").to_i())
+  @contact.add_email(email)
+  # binding.pry
   erb(:contact)
 end

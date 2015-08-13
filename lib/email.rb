@@ -5,7 +5,6 @@ class Email
   define_method(:initialize) do |attributes|
     @email_address = attributes.fetch(:email_address)
     @email_id = @@emails.length().+(1)
-    @email_info = []
   end
 
   define_singleton_method(:all) do
@@ -34,7 +33,4 @@ class Email
     found_email
   end
 
-  define_method(:add) do
-    @email_info.push(@email)
-  end
 end
